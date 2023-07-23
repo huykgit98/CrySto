@@ -1,0 +1,16 @@
+include: ../analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.graphql.dart"
+    - "**/*.gr.dart"
+    - "**/*.freezed.dart"
+    - "**/*.config.dart"
+    - "**/*.gen.dart"
+    # - "test/*.dart"
+    - "lib/src/repository/model/generated/*.dart"
+  language:
+    strict-raw-types: false
+  errors:
+    invalid_annotation_target: ignore
