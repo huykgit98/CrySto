@@ -18,8 +18,12 @@ enum Gender {
 }
 
 enum LanguageCode {
-  en(localeCode: LocaleConstants.en, serverValue: ServerRequestResponseConstants.en),
-  ja(localeCode: LocaleConstants.ja, serverValue: ServerRequestResponseConstants.ja);
+  en(
+      localeCode: LocaleConstants.en,
+      serverValue: ServerRequestResponseConstants.en),
+  ja(
+      localeCode: LocaleConstants.ja,
+      serverValue: ServerRequestResponseConstants.ja);
 
   const LanguageCode({
     required this.localeCode,
@@ -40,7 +44,8 @@ enum NotificationType {
 enum BottomTab {
   home(icon: Icon(Icons.home), activeIcon: Icon(Icons.home)),
   search(icon: Icon(Icons.search), activeIcon: Icon(Icons.search)),
-  myPage(icon: Icon(Icons.people), activeIcon: Icon(Icons.people));
+  myPage(icon: Icon(Icons.people), activeIcon: Icon(Icons.people)),
+  chatGPT(icon: Icon(Icons.chat), activeIcon: Icon(Icons.chat));
 
   const BottomTab({
     required this.icon,
@@ -57,6 +62,11 @@ enum BottomTab {
         return S.current.search;
       case BottomTab.myPage:
         return S.current.myPage;
+      case BottomTab.chatGPT:
+        return S.current.chatGPT;
     }
   }
 }
+
+//Chat GPT
+enum ChatMessageType { user, bot }

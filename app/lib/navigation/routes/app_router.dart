@@ -43,6 +43,13 @@ class AppRouter extends $AppRouter {
               AutoRoute(page: MyPageRoute.page, initial: true),
             ],
           ),
+          AutoRoute(
+            page: ChatGPTTab.page,
+            maintainState: true,
+            children: [
+              AutoRoute(page: ChatGPTRoute.page, initial: true),
+            ],
+          ),
         ]),
       ];
 }
@@ -60,4 +67,9 @@ class SearchTabPage extends AutoRouter {
 @RoutePage(name: 'MyPageTab')
 class MyPageTabPage extends AutoRouter {
   const MyPageTabPage({super.key});
+}
+
+@RoutePage(name: 'ChatGPTTab')
+class ChatGPTTabPage extends AutoRouter {
+  const ChatGPTTabPage({super.key});
 }

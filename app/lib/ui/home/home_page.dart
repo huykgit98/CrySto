@@ -19,7 +19,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends BasePageState<HomePage, HomeBloc> {
-  late final _pagingController = CommonPagingController<User>()..disposeBy(disposeBag);
+  late final _pagingController = CommonPagingController<User>()
+    ..disposeBy(disposeBag);
 
   @override
   void initState() {
@@ -83,13 +84,15 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
                             loadingWidget: const _LoadingItem(),
                             child: GestureDetector(
                               onTap: () async {
-                                await navigator.push(AppRouteInfo.itemDetail(user));
+                                await navigator
+                                    .push(AppRouteInfo.itemDetail(user));
                               },
                               child: Container(
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   color: AppColors.current.primaryColor,
-                                  borderRadius: BorderRadius.circular(Dimens.d8.responsive()),
+                                  borderRadius: BorderRadius.circular(
+                                      Dimens.d8.responsive()),
                                 ),
                                 width: double.infinity,
                                 height: Dimens.d60.responsive(),

@@ -9,7 +9,10 @@ import '../../../app.dart';
 @Injectable()
 class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
   HomeBloc(this._getUsersUseCase) : super(HomeState()) {
+    //Bloc requires us to register event handlers via the on<Event> API, as opposed to functions in Cubit.
+    // An event handler is responsible for converting any incoming events into zero or more outgoing states.
     on<HomePageInitiated>(
+      //this is a handler
       _onHomePageInitiated,
       transformer: log(),
     );
@@ -25,24 +28,29 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     );
   }
   final GetUsersUseCase _getUsersUseCase;
-
-  FutureOr<void> _onHomePageInitiated(HomePageInitiated event, Emitter<HomeState> emit) async {
+  //💡 Tip: an EventHandler has access to the added event as well as an Emitter
+  // which can be used to emit zero or more states in response to the incoming event.
+  FutureOr<void> _onHomePageInitiated(
+      HomePageInitiated event, Emitter<HomeState> emit) async {
     await _getUsers(
       emit: emit,
       isInitialLoad: true,
       doOnSubscribe: () async => emit(state.copyWith(isShimmerLoading: true)),
-      doOnSuccessOrError: () async => emit(state.copyWith(isShimmerLoading: false)),
+      doOnSuccessOrError: () async =>
+          emit(state.copyWith(isShimmerLoading: false)),
     );
   }
 
-  FutureOr<void> _onUserLoadMore(UserLoadMore event, Emitter<HomeState> emit) async {
+  FutureOr<void> _onUserLoadMore(
+      UserLoadMore event, Emitter<HomeState> emit) async {
     await _getUsers(
       emit: emit,
       isInitialLoad: false,
     );
   }
 
-  FutureOr<void> _onHomePageRefreshed(HomePageRefreshed event, Emitter<HomeState> emit) async {
+  FutureOr<void> _onHomePageRefreshed(
+      HomePageRefreshed event, Emitter<HomeState> emit) async {
     await _getUsers(
       emit: emit,
       isInitialLoad: true,
@@ -66,7 +74,8 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     return runBlocCatching(
       action: () async {
         emit(state.copyWith(loadUsersException: null));
-        final output = await _getUsersUseCase.execute(const GetUsersInput(), isInitialLoad);
+        final output = await _getUsersUseCase.execute(
+            const GetUsersInput(), isInitialLoad);
         emit(state.copyWith(users: output));
       },
       doOnError: (e) async {

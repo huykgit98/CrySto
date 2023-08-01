@@ -35,6 +35,10 @@ dependencies:
   shared:
     path: ../shared
   tuple: 2.0.2
+  avatar_glow: 2.0.2
+  speech_to_text: 6.3.0
+  flutter_tts: 3.7.0
+
 dev_dependencies:
   auto_route_generator: 7.1.1
   bloc_test: 9.1.3
@@ -78,6 +82,10 @@ flutter:
   generate: false
   assets:
     - assets/images/
+    - assets/
+    - assets/sounds/speech_to_text_listening.m4r
+    - assets/sounds/speech_to_text_cancel.m4r
+    - assets/sounds/speech_to_text_stop.m4r
 #  fonts:
 #    - family: Muli
 #      fonts:
