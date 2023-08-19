@@ -1,4 +1,4 @@
-CrySto - Scrypto + Stock market trading view app
+CrySto - Crypto + Stock market trading view app
 * Base project: https://github.com/ntminhdn/Flutter-Bloc-CleanArchitecture
 * Requirements
   Dart: 3.0.5
